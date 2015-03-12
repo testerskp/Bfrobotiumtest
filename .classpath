@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/BaofengAndroid"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry kind="lib" path="libs/robotium-solo-5.2.1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/E:/robotium/robotium-solo-5.2.1-javadoc.zip!/robotium-solo-5.2.1-javadoc"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libs/robotium-solo-5.2.1-javadoc.zip"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry kind="output" path="bin/classes"/>
+</classpath>
