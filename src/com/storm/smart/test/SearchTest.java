@@ -1,5 +1,7 @@
 package com.storm.smart.test;
 
+import org.json.JSONException;
+
 import com.robotium.solo.Solo;
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
@@ -11,12 +13,14 @@ import com.storm.smart.R;
 import com.storm.smart.activity.GuideActivity;
 import com.storm.smart.activity.MainActivity;
 import com.storm.smart.activity.SearchResultActivity;
+import com.storm.tools.HttpGet;
 
 public class SearchTest extends ActivityInstrumentationTestCase2<LogoActivity> {
 	private Solo solo;
 	private Button searchButton;
 	private EditText searchEditText;
 	private String defaultSearchKey;
+	private String defkey = null;
 	public SearchTest(){
 		super(LogoActivity.class);
 	}
@@ -56,7 +60,13 @@ public class SearchTest extends ActivityInstrumentationTestCase2<LogoActivity> {
 		Log.d("search","msg" + defaultSearchKey);
 		System.out.println("msg" + defaultSearchKey);
 //		solo.clickOnView(solo.getView(R.id.search_search));
-		assertEquals("一见不钟情",defaultSearchKey);	
+		String s = HttpGet.sendGet("http://192.168.90.43/search_keyword.php", "platf=android&limit=30");
+		try{
+			defkey = HttpGet.jsonArr(HttpGet.jsonOb(s, "result"), "default");
+		}catch(JSONException e){
+			e.printStackTrace();
+		}	
+		assertEquals(defkey,defaultSearchKey);	
 	}
 	@Override
 	protected void tearDown() throws Exception{
