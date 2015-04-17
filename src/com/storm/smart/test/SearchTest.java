@@ -7,6 +7,7 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.storm.smart.LogoActivity;
 import com.storm.smart.R;
@@ -22,7 +23,7 @@ public class SearchTest extends ActivityInstrumentationTestCase2<LogoActivity> {
 	private String defaultSearchKey;
 	private String defkey = null;
 	public SearchTest(){
-		super(LogoActivity.class);
+		super(LogoActivity.class); 
 	}
 	
 	@Override
@@ -60,13 +61,14 @@ public class SearchTest extends ActivityInstrumentationTestCase2<LogoActivity> {
 		Log.d("search","msg" + defaultSearchKey);
 		System.out.println("msg" + defaultSearchKey);
 //		solo.clickOnView(solo.getView(R.id.search_search));
-		String s = HttpGet.sendGet("http://192.168.90.43/search_keyword.php", "platf=android&limit=30");
+		String s = HttpGet.sendGet("http://search.shouji.baofeng.com/search_keyword.php", "platf=android&limit=30");
 		try{
 			defkey = HttpGet.jsonArr(HttpGet.jsonOb(s, "result"), "default");
 		}catch(JSONException e){
 			e.printStackTrace();
 		}	
 		assertEquals(defkey,defaultSearchKey);	
+
 	}
 	@Override
 	protected void tearDown() throws Exception{
