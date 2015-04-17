@@ -55,25 +55,22 @@ public class SearchTest extends ActivityInstrumentationTestCase2<LogoActivity> {
 		solo.sleep(1000);
 		assertTrue(solo.waitForActivity(SearchResultActivity.class,6000));
 		searchEditText = (EditText)solo.getCurrentActivity().findViewById(R.id.search_textinput);
-//		searchEditText = (EditText)solo.getView(R.id.search_textinput);
-//		defaultSearchKey = searchEditText.getText().toString();
 		defaultSearchKey = searchEditText.getHint().toString();
 		Log.d("search","msg" + defaultSearchKey);
-		System.out.println("msg" + defaultSearchKey);
-//		solo.clickOnView(solo.getView(R.id.search_search));
 		String s = HttpGet.sendGet("http://search.shouji.baofeng.com/search_keyword.php", "platf=android&limit=30");
 		try{
 			defkey = HttpGet.jsonArr(HttpGet.jsonOb(s, "result"), "default");
 		}catch(JSONException e){
 			e.printStackTrace();
-		}	
+		}
+		Log.d("search",defkey);
 		assertEquals(defkey,defaultSearchKey);	
 
 	}
 	@Override
 	protected void tearDown() throws Exception{
-		super.tearDown();
 		solo.finishOpenedActivities();
+		super.tearDown();
 	}
 
 }
